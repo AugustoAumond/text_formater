@@ -5,7 +5,12 @@ export type ReplacementRule = {
 
 export type PreviewPart = {
   text: string
-  appliedRule?: ReplacementRule
+  appliedRule?: AppliedReplacement
+}
+
+export type AppliedReplacement = ReplacementRule & {
+  originalIdentifier: string
+  transformedIdentifier: string
 }
 
 export type TransformPreview = {
@@ -87,7 +92,7 @@ export function reorderSectionsByIdentifier(text: string): string {
 
 function buildPreview(
   textWithMarkers: string,
-  appliedRules: ReplacementRule[],
+  appliedRules: AppliedReplacement[],
 ): TransformPreview {
   const previewParts: PreviewPart[] = []
   const appliedIdentifierExpression = /#(\d+)#\uE000(\d+)\uE001/g
@@ -131,7 +136,7 @@ export function transformTextWithPreview(
       { from: from.trim(), to: to.trim() },
     ]),
   )
-  const appliedRules: ReplacementRule[] = []
+  const appliedRules: AppliedReplacement[] = []
 
   const transformedText = text.replace(/#(\d+)(?![\d#])/g, (identifier, source: string) => {
     const replacement = replacementBySource.get(normalizeIdentifier(source))
@@ -140,12 +145,16 @@ export function transformTextWithPreview(
       return identifier
     }
 
-    const appliedRuleIndex = appliedRules.push(replacement) - 1
+    const transformedIdentifier = '#' + replacement.to + '#'
+    const appliedRuleIndex =
+      appliedRules.push({
+        ...replacement,
+        originalIdentifier: identifier,
+        transformedIdentifier,
+      }) - 1
 
     return (
-      '#' +
-      replacement.to +
-      '#' +
+      transformedIdentifier +
       previewMarkerStart +
       appliedRuleIndex +
       previewMarkerEnd

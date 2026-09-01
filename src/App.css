@@ -416,6 +416,45 @@ code {
   white-space: normal;
 }
 
+.tooltip-label {
+  display: block;
+  margin-bottom: 4px;
+  color: #d9ebe5;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tooltip-change {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.previous-identifier,
+.new-identifier {
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-weight: 800;
+}
+
+.previous-identifier {
+  color: #ffd7d2;
+  background: #8c312b;
+}
+
+.new-identifier {
+  color: #d5f7e8;
+  background: #216e59;
+}
+
+.tooltip-arrow {
+  color: #d9ebe5;
+  font-size: 0.95rem;
+}
+
 .changed-identifier:hover .rule-tooltip,
 .changed-identifier:focus .rule-tooltip {
   opacity: 1;

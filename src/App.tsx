@@ -221,8 +221,16 @@ function App() {
                       >
                         {part.text}
                         <span className="rule-tooltip" role="tooltip">
-                          Regra aplicada: #{part.appliedRule.from} → #
-                          {part.appliedRule.to}#
+                          <span className="tooltip-label">Alteração aplicada</span>
+                          <span className="tooltip-change">
+                            <span className="previous-identifier">
+                              {part.appliedRule.originalIdentifier}
+                            </span>
+                            <span className="tooltip-arrow" aria-hidden="true">→</span>
+                            <span className="new-identifier">
+                              {part.appliedRule.transformedIdentifier}
+                            </span>
+                          </span>
                         </span>
                       </span>
                     ) : (

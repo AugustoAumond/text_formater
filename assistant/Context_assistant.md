@@ -18,3 +18,4 @@
 - 31/08/2026 — Após as substituições, seções iniciadas por uma tag isolada em uma linha são reordenadas em ordem numérica pelo identificador final.
 - 31/08/2026 — Adicionado botão com ícone para copiar o texto resultante para a área de transferência.
 - 31/08/2026 — O preview passou a destacar cada tag alterada; ao passar o mouse sobre ela, a interface informa a regra De → Para aplicada.
+- 31/08/2026 — O tooltip do preview passou a comparar visualmente a tag original em vermelho com a tag resultante em verde.
